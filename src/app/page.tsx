@@ -4,8 +4,7 @@ import PostPreviewCard from "@/components/post-preview-card";
 export default async function Home() {
   const data = await getAllPostForHome("");
   return (
-    <main className="container mx-auto">
-      <div>{JSON.stringify(data)}</div>
+    <main className="container mx-auto flex flex-grow flex-col">
       <div className="grid gap-4">
         {data.edges.map(({ node }: any) => (
           <PostPreviewCard key={node.id} node={node} />
