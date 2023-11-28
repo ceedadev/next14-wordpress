@@ -35,6 +35,7 @@ export async function getAllPostForHome(preview: any) {
       posts(first: 20, where: { orderby: { field: DATE, order: DESC } }) {
         edges {
           node {
+            id
             title
             excerpt
             slug
@@ -68,4 +69,35 @@ export async function getAllPostForHome(preview: any) {
   );
 
   return data?.posts;
+}
+
+export async function getPostBySlug(slug: string) {
+  const data = await fetchAPI(`
+  query getPostBySlug {
+    post(id: "${slug}", idType: SLUG) {
+      author {
+        node {
+          name
+          avatar {
+            url
+          }
+        }
+      }
+      content
+      date
+      excerpt
+      featuredImage {
+        node {
+          sourceUrl
+        }
+      }
+      tags {
+        nodes {
+          name
+        }
+      }
+      title
+    }
+  }`);
+  return data?.post;
 }
