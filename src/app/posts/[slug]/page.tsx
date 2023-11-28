@@ -15,7 +15,7 @@ export async function generateMetadata({
   }
   const title = `${post.title} - ${SITE_TITLE}`;
   const description = post.excerpt; // TODO: POTENTIALLY HTML TAG IS INCLUDED
-  const ogImage = post.featuredImage.node.sourceUrl;
+  const ogImage = post.featuredImage.node.sourceUrl ?? "";
 
   return {
     // metadataBase: new URL(SITE_URL),
@@ -50,7 +50,7 @@ export default async function PostPage({
   const data = await getPostBySlug(params.slug);
   return (
     <div>
-      <p className="text-neutral-400">{JSON.stringify(data)}</p>
+      {/* <p className="text-neutral-400">{JSON.stringify(data)}</p> */}
       <article className="container mx-auto py-6 md:py-10 spacey-4 md:space-y-10">
         <Image
           className="h-[340px] w-full object-cover"
@@ -69,7 +69,7 @@ export default async function PostPage({
           className={styles.content}
           dangerouslySetInnerHTML={{ __html: data.content }}
         />
-        <div className="space-y-6 flex flex-col">
+        <div className="space-y-6 flex flex-col border-t pt-4 md:pt-10">
           <p className="text-lg">Tags</p>
           <div className="flex flex-row">
             {data.tags.nodes.map((tag: any) => (
