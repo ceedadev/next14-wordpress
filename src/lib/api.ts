@@ -120,5 +120,45 @@ export async function getAllCategories() {
     }
   }
   `);
-  return data;
+  return data.categories.nodes;
+}
+
+export async function getPostsByCategoryName(categoryName: string) {
+  const data = await fetchAPI(`
+  query getAllPostByCategoryName {
+    posts(first: 20, where: {orderby: {field: DATE, order: DESC}, categoryName: "${categoryName}"}) {
+      edges {
+        node {
+          id
+          title
+          slug
+          date
+          featuredImage {
+            node {
+              sourceUrl
+            }
+          }
+          author {
+            node {
+              name
+              firstName
+              lastName
+              avatar {
+                url
+              }
+            }
+          }
+          categories(first: 1) {
+            nodes {
+              name
+              slug
+            }
+          }
+          excerpt
+        }
+      }
+    }
+  }
+  `);
+  return data.posts;
 }
