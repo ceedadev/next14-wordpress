@@ -37,7 +37,7 @@ export async function getAllPostForHome(preview: any) {
           node {
             id
             title
-            excerpt
+            excerpt(format: RENDERED)
             slug
             date
             featuredImage {
@@ -53,6 +53,12 @@ export async function getAllPostForHome(preview: any) {
                 avatar {
                   url
                 }
+              }
+            }
+            categories(first: 1) {
+              nodes {
+                name
+                slug
               }
             }
           }
@@ -100,4 +106,19 @@ export async function getPostBySlug(slug: string) {
     }
   }`);
   return data?.post;
+}
+
+export async function getAllCategories() {
+  const data = await fetchAPI(`
+  query getAllCategories {
+    categories {
+      nodes {
+        id
+        slug
+        name
+      }
+    }
+  }
+  `);
+  return data;
 }
