@@ -11,6 +11,7 @@ export default async function Home() {
   return (
     <Sheet>
       <PageHeading text={SITE_TITLE} />
+      <p>{JSON.stringify(data)}</p>
       {/* CATEGORIES */}
       <div className="flex flex-row items-center justify-between">
         <p className="uppercase text-xs font-bold tracking-tight">Categories</p>
@@ -23,7 +24,7 @@ export default async function Home() {
         </div>
       </div>
 
-      <div className="grid border-separate grid-cols-1 md:grid-cols-3">
+      <div className="grid gap-4 md:gap-0 border-separate grid-cols-1 md:grid-cols-3">
         {data.edges.map(({ node }: any) => (
           <PostPreviewGridItem key={node.slug} post={node} />
         ))}
