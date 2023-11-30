@@ -4,6 +4,7 @@ import { formatTimeAgo } from "@/lib/format";
 import Image from "next/image";
 import type { Metadata } from "next";
 import { SITE_TITLE, SITE_URL } from "@/lib/constant";
+import { Sheet } from "@/components/sheet";
 
 export async function generateMetadata({
   // @ts-ignore
@@ -49,7 +50,7 @@ export default async function PostPage({
 }) {
   const data = await getPostBySlug(params.slug);
   return (
-    <div>
+    <Sheet>
       {/* <p className="text-neutral-400">{JSON.stringify(data)}</p> */}
       <article className="container mx-auto py-6 md:py-10 spacey-4 md:space-y-10">
         <Image
@@ -83,6 +84,6 @@ export default async function PostPage({
           </div>
         </div>
       </article>
-    </div>
+    </Sheet>
   );
 }
