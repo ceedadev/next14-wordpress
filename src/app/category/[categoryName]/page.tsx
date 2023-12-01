@@ -12,6 +12,9 @@ export default async function CategoryPage({
   return (
     <Sheet>
       <PageHeading text={params.categoryName} />
+      <p className="text-xs font-serif italic">
+        There are {posts.edges.length} posts in {params.categoryName}
+      </p>
       <div className="grid gap-4 md:gap-0 border-separate grid-cols-1 md:grid-cols-3">
         {posts.edges.map(({ node }: any) => (
           <PostPreviewGridItem key={node.slug} post={node} />
