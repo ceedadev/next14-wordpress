@@ -13,9 +13,11 @@ export default async function Home() {
     <Sheet>
       <PageHeading text={SITE_TITLE} />
       {/* CATEGORIES */}
-      <div className="flex flex-row items-center justify-between">
-        <p className="uppercase text-xs font-bold tracking-tight">Categories</p>
-        <div className="flex flex-row space-x-2">
+      <div className="md:flex flex-col space-y-4 md:flex-row items-center justify-between mb-10">
+        <p className="uppercase text-xs font-bold tracking-tight mr-4">
+          Categories
+        </p>
+        <div className="flex flex-wrap gap-2">
           {categories.map((category: any) => (
             <CategoryButton
               key={category.id}

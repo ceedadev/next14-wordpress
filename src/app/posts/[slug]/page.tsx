@@ -52,9 +52,10 @@ export default async function PostPage({
   return (
     <Sheet>
       {/* <p className="text-neutral-400">{JSON.stringify(data)}</p> */}
-      <article className="container mx-auto py-6 md:py-10 spacey-4 md:space-y-10">
+      <article className="container mx-auto py-6 md:py-10 space-y-4 md:space-y-10">
         <Image
-          className="h-[340px] w-full object-cover"
+          className="aspect-square md:aspect-auto
+           md:h-[340px] w-full object-cover"
           src={data.featuredImage.node.sourceUrl}
           width={1080}
           height={1080}
